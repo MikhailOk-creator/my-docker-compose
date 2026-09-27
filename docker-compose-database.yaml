@@ -1,0 +1,20 @@
+version: '3'
+services:
+  #postgresql
+  postgresql:
+    image: postgres:18-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgresql
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+      # - ./init_database:/docker-entrypoint-initdb.d   - если есть инициализирующий sql-файл
+
+  # redis
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
